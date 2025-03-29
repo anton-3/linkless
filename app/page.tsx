@@ -19,6 +19,7 @@ export default function HomePage() {
           <label htmlFor="link">link:</label>
           <input type="url" id="link" name="link" required />
           <p id="error">{state?.message}</p>
+          <p id="short-link">{state?.link}</p>
         </form>
       </div>
     </main>
