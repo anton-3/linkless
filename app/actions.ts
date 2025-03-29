@@ -1,6 +1,5 @@
 "use server";
-
-import { BASE_URL, generateCharacters } from "./utils";
+import { BASE_URL, generateCharacters, isValidURL } from "./utils";
 
 const LINK_LENGTH = parseInt(String(process.env.LINK_LENGTH)) || 6;
 
@@ -14,7 +13,7 @@ async function generateLink(
   formData: FormData
 ) {
   const longLink = formData.get("link") as string;
-  if (!URL.canParse(longLink)) {
+  if (!isValidURL(longLink)) {
     return {
       message: "invalid URL provided",
     };

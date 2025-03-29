@@ -11,4 +11,8 @@ function generateCharacters(length: number): string {
   return characters.join("");
 }
 
-export { generateCharacters, BASE_URL };
+function isValidURL(url: string): boolean {
+  return URL.canParse(url);
+}
+
+export { generateCharacters, isValidURL, BASE_URL };
