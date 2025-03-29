@@ -12,7 +12,7 @@ function generateCharacters(length: number): string {
 }
 
 function isValidURL(url: string): boolean {
-  return URL.canParse(url);
+  return URL.canParse(url) && url.startsWith("http");
 }
 
 export { generateCharacters, isValidURL, BASE_URL };
