@@ -1,5 +1,6 @@
 const LINK_CHARACTERS =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
+const BASE_URL = process.env.BASE_URL || "https://example.com";
 
 function generateCharacters(length: number): string {
   let characters = [];
@@ -10,4 +11,4 @@ function generateCharacters(length: number): string {
   return characters.join("");
 }
 
-export { generateCharacters };
+export { generateCharacters, BASE_URL };
