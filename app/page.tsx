@@ -1,6 +1,26 @@
+"use client";
+import { useActionState } from "react";
+import { generateLink, GenerateLinkActionState } from "./actions";
 
-export default function Home() {
+const initialState: GenerateLinkActionState = {
+  message: "",
+  link: "",
+};
+
+export default function HomePage() {
+  const [state, formAction, pending] = useActionState(
+    generateLink,
+    initialState
+  );
   return (
-    <div>hi</div>
+    <main>
+      <div>
+        <form action={formAction}>
+          <label htmlFor="link">link:</label>
+          <input type="url" id="link" name="link" required />
+          <p id="error">{state?.message}</p>
+        </form>
+      </div>
+    </main>
   );
 }

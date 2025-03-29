@@ -1,14 +1,22 @@
 "use server";
 
-import { BASE_URL, generateCharacters } from "@/app/utils";
+import { BASE_URL, generateCharacters } from "./utils";
 
 const LINK_LENGTH = parseInt(String(process.env.LINK_LENGTH)) || 6;
 
-async function generateLink(formData: FormData) {
-  const longLink = formData.get("link")?.toString() ?? "";
+type GenerateLinkActionState = {
+  link?: string;
+  message?: string;
+};
+
+async function generateLink(
+  _prevState: GenerateLinkActionState,
+  formData: FormData
+) {
+  const longLink = formData.get("link") as string;
   if (!URL.canParse(longLink)) {
     return {
-      error: "invalid URL provided",
+      message: "invalid URL provided",
     };
   }
   let shortLinkPath = generateCharacters(LINK_LENGTH);
@@ -21,8 +29,9 @@ async function generateLink(formData: FormData) {
 
   console.log(`[+] link created: ${shortLink} -> ${longLink}`);
   return {
-    shortLink,
+    link: shortLink,
   };
 }
 
 export { generateLink };
+export type { GenerateLinkActionState };
