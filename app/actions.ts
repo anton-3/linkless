@@ -1,6 +1,6 @@
 "use server";
 
-import { BASE_URL, generateCharacters } from "@/app/lib/utils";
+import { BASE_URL, generateCharacters } from "@/app/utils";
 
 const LINK_LENGTH = parseInt(String(process.env.LINK_LENGTH)) || 6;
 
