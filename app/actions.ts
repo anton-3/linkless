@@ -1,8 +1,7 @@
 "use server";
 
-import { generateCharacters } from "@/app/lib/utils";
+import { BASE_URL, generateCharacters } from "@/app/lib/utils";
 
-const BASE_URL = process.env.BASE_URL || "https://example.com";
 const LINK_LENGTH = parseInt(String(process.env.LINK_LENGTH)) || 6;
 
 async function generateLink(formData: FormData) {
@@ -18,7 +17,7 @@ async function generateLink(formData: FormData) {
 
   const shortLink = BASE_URL + "/" + shortLinkPath;
 
-  // TODO: store this in the db: link points to short
+  // TODO: store this in the db: shortLinkPath points to longLink
 
   console.log(`[+] link created: ${shortLink} -> ${longLink}`);
   return {
