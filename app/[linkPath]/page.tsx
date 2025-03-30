@@ -1,10 +1,21 @@
-"use client";
-import { redirect, useParams } from "next/navigation";
+"use server";
+import { notFound, redirect } from "next/navigation";
+import { getValue } from "../firebase";
+import { BASE_URL, isValidLinkPath } from "../utils";
 
-export default function LinkRedirectPage() {
-  const params = useParams();
-  const linkPath = params.linkPath?.toString() ?? "";
-  // TODO: get full long link from db and then redirect to it
-  const longLink = "https://www.google.com"; // placeholder
-  redirect(longLink);
+interface LinkRedirectPageProps {
+  params: Promise<{
+    linkPath: string;
+  }>;
+}
+
+export default async function LinkRedirectPage({
+  params,
+}: LinkRedirectPageProps) {
+  const linkPath = (await params).linkPath ?? "";
+  if (!isValidLinkPath(linkPath)) {
+    notFound();
+  }
+  const redirectUrl = (await getValue(linkPath)) ?? BASE_URL;
+  redirect(redirectUrl);
 }

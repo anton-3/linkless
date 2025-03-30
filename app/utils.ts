@@ -1,5 +1,6 @@
 const LINK_CHARACTERS =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
+const LINK_LENGTH = parseInt(String(process.env.LINK_LENGTH)) || 6;
 const BASE_URL = process.env.BASE_URL || "https://example.com";
 
 function generateCharacters(length: number): string {
@@ -15,4 +16,17 @@ function isValidURL(url: string): boolean {
   return URL.canParse(url) && url.startsWith("http");
 }
 
-export { generateCharacters, isValidURL, BASE_URL };
+function isValidLinkPath(linkPath: string): boolean {
+  return (
+    linkPath.length == LINK_LENGTH &&
+    [...linkPath].every((char) => LINK_CHARACTERS.includes(char))
+  );
+}
+
+export {
+  generateCharacters,
+  isValidURL,
+  isValidLinkPath,
+  BASE_URL,
+  LINK_LENGTH,
+};

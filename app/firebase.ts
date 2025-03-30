@@ -24,9 +24,10 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 async function getValue(key: string): Promise<string | null> {
+  key = "/links/" + key;
   try {
     const snapshot = await get(ref(database, key));
-    return snapshot.exists() ? (snapshot.val() as string) : null;
+    return snapshot.exists() ? String(snapshot.val()) : null;
   } catch (error) {
     console.error(`firebase error fetching key ${key}`, error);
     return null;
@@ -34,6 +35,7 @@ async function getValue(key: string): Promise<string | null> {
 }
 
 async function setValue(key: string, value: string): Promise<boolean> {
+  key = "/links/" + key;
   try {
     await set(ref(database, key), value);
     return true;
