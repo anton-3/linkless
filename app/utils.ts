@@ -4,7 +4,7 @@ const LINK_LENGTH = parseInt(String(process.env.LINK_LENGTH)) || 6;
 const BASE_URL = process.env.BASE_URL || "https://example.com";
 
 function generateCharacters(length: number): string {
-  let characters = [];
+  const characters = [];
   for (let i = 0; i < length; i++) {
     const index = Math.floor(Math.random() * (LINK_CHARACTERS.length + 1));
     characters.push(LINK_CHARACTERS[index]);
