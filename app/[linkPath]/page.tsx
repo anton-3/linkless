@@ -1,6 +1,6 @@
 "use server";
 import { notFound, redirect } from "next/navigation";
-import { getValue } from "../firebase";
+import { getValue } from "../database";
 import { BASE_URL, isValidLinkPath } from "../utils";
 
 interface LinkRedirectPageProps {

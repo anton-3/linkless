@@ -1,5 +1,5 @@
 "use server";
-import { getValue, setValue } from "./firebase";
+import { getValue, setValue } from "./database";
 import { BASE_URL, LINK_LENGTH, generateCharacters, isValidURL } from "./utils";
 
 type GenerateLinkActionState = {
